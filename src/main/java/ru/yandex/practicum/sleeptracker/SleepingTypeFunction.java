@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.function.Function;
 
 public class SleepingTypeFunction implements Function<List<SleepingSession>, SleepAnalysisResult>  {
-    private final LocalTime OWL_SLEEP_START = LocalTime.of(23, 0);
-    private final LocalTime OWL_SLEEP_END = LocalTime.of(9, 0);
-    private final LocalTime LARK_SLEEP_START = LocalTime.of(22, 0);
-    private final LocalTime LARK_SLEEP_END = LocalTime.of(7, 0);
+    private static final LocalTime OWL_SLEEP_START = LocalTime.of(23, 0);
+    private static final LocalTime OWL_SLEEP_END = LocalTime.of(9, 0);
+    private static final LocalTime LARK_SLEEP_START = LocalTime.of(22, 0);
+    private static final LocalTime LARK_SLEEP_END = LocalTime.of(7, 0);
 
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
