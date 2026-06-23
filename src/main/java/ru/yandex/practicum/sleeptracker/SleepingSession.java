@@ -3,7 +3,7 @@ package ru.yandex.practicum.sleeptracker;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;;
+import java.time.format.DateTimeFormatter;
 
 public class SleepingSession {
     static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
@@ -33,7 +33,9 @@ public class SleepingSession {
         return start;
     }
 
-    public LocalTime getStartTime() {return start.toLocalTime();}
+    public LocalTime getStartTime() {
+        return start.toLocalTime();
+    }
 
     public LocalDateTime getEnd() {
         return end;
