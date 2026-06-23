@@ -9,6 +9,7 @@ import java.util.List;
 public class SleepTrackerAppTest {
     private List<SleepingSession> sessions;
     private List<SleepingSession> listWithoutSessions;
+
     @BeforeEach
     void prepareForEveryFunctionTests() {
             sessions = List.of(SleepingSession.transformString("01.10.25 22:15;02.10.25 08:00;GOOD"),
@@ -18,6 +19,7 @@ public class SleepTrackerAppTest {
 
             listWithoutSessions = List.of();
     }
+
     @Test
     void testAverageSessionFunction() {
         AverageSessionFunction function = new AverageSessionFunction();
