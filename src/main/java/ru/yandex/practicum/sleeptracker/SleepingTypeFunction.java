@@ -19,7 +19,7 @@ public class SleepingTypeFunction implements Function<List<SleepingSession>, Sle
         List<SleepingSession> nightSessions = sessions.stream()
                 .filter(s -> {
                     LocalTime start = s.getStartTime();
-                    return start.isAfter(LocalTime.of(19, 59)) || start.isBefore(LocalTime.of(6, 0));
+                    return start.isAfter(NightsWithoutSleeping.NIGHT_SLEEP_START) || start.isBefore(NightsWithoutSleeping.NIGHT_SLEEP_END);
                 })
                 .toList();
 
