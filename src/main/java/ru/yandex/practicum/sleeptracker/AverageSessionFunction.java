@@ -10,7 +10,7 @@ public class AverageSessionFunction implements Function<List<SleepingSession>, S
                 .mapToLong(s  -> s.getDuration().toMinutes())
                 .average()
                 .orElse(0);
-         return new SleepAnalysisResult("Среднее количество сессий (мин)", avg);
+         return new SleepAnalysisResult("Средняя продолжительность сна", avg);
 
     }
 }

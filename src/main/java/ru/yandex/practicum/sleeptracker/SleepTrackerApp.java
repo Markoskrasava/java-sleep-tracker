@@ -10,7 +10,7 @@ import java.util.function.Function;
 public class SleepTrackerApp {
 
     public static void main(String[] args) {
-        String filepath = " ";
+        String filepath = "src\\main\\resources\\sleep_log.txt";
         List<SleepingSession> sessions = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
             sessions = reader.lines()
@@ -21,7 +21,7 @@ public class SleepTrackerApp {
         }
 
         final List<SleepingSession> finalSessions = sessions;
-        List<Function> functions = List.of(new BadQualitySessionsFunction(),
+        List<Function<List<SleepingSession>, SleepAnalysisResult>> functions = List.of(new BadQualitySessionsFunction(),
                 new MaxSessionFunction(),
                 new MinSessionFunction(),
                 new TotalSessionsFunction(),

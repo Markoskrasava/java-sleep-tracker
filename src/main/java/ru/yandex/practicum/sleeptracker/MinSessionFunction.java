@@ -10,6 +10,6 @@ public class MinSessionFunction implements Function<List<SleepingSession>, Sleep
                 .mapToLong(s  -> s.getDuration().toMinutes())
                 .min()
                 .orElse(0);
-        return new SleepAnalysisResult("Минимальное количество сна в сессии", minSession);
+        return new SleepAnalysisResult("Минимальная продолжительность сна", minSession);
     }
 }

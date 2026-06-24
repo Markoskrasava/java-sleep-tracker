@@ -9,12 +9,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class NightsWithoutSleeping implements Function<List<SleepingSession>, SleepAnalysisResult> {
+    private static final LocalTime NIGHT_SLEEP_START = LocalTime.of(19,59);
+    private static final LocalTime NIGHT_SLEEP_END = LocalTime.of(6,0);
+    @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
-        // 1. Находим ночи со сном
+        if (sessions.isEmpty()) {
+            return new SleepAnalysisResult("Количество бессонных ночей", 0L);
+        }
         Set<LocalDate> nightsWithSleep = sessions.stream()
                 .filter(s -> {
                     LocalTime start = s.getStartTime();
-                    return start.isAfter(LocalTime.of(19, 59)) || start.isBefore(LocalTime.of(6, 0));
+                    return start.isAfter(NIGHT_SLEEP_START) || start.isBefore(NIGHT_SLEEP_END);
                 })
                 .map(s -> {
                     LocalDate date = s.getStart().toLocalDate();
@@ -23,7 +28,6 @@ public class NightsWithoutSleeping implements Function<List<SleepingSession>, Sl
                 })
                 .collect(Collectors.toSet());
 
-        // 2. Находим период только по датам НАЧАЛА сессий
         LocalDate startDate = sessions.stream()
                 .map(s -> s.getStart().toLocalDate())
                 .min(LocalDate::compareTo)
@@ -34,7 +38,6 @@ public class NightsWithoutSleeping implements Function<List<SleepingSession>, Sl
                 .max(LocalDate::compareTo)
                 .orElseThrow();
 
-        // 3. Все ночи в периоде
         Set<LocalDate> allNights = new HashSet<>();
         LocalDate current = startDate;
         while (!current.isAfter(endDate)) {
@@ -42,7 +45,6 @@ public class NightsWithoutSleeping implements Function<List<SleepingSession>, Sl
             current = current.plusDays(1);
         }
 
-        // 4. Бессонные ночи
         allNights.removeAll(nightsWithSleep);
 
         return new SleepAnalysisResult("Количество бессонных ночей", (long) allNights.size());

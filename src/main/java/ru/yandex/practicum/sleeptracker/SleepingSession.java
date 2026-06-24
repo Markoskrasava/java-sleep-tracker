@@ -6,10 +6,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class SleepingSession {
-    static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
-    LocalDateTime start;
-    LocalDateTime end;
-    SleepingQuality sleepingQuality;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private SleepingQuality sleepingQuality;
 
     public SleepingSession(LocalDateTime start, LocalDateTime end, SleepingQuality sleepingQuality) {
         this.start = start;

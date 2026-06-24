@@ -77,6 +77,20 @@ public class SleepTrackerAppTest {
     }
 
     @Test
+    void testTotalSessionsFunction() {
+        TotalSessionsFunction function = new TotalSessionsFunction();
+        SleepAnalysisResult result = function.apply(sessions);
+        Assertions.assertEquals(4L, result.getValue());
+    }
+
+    @Test
+    void testTotalSessionsFunctionWithoutSessions() {
+        TotalSessionsFunction function = new TotalSessionsFunction();
+        SleepAnalysisResult result = function.apply(listWithoutSessions);
+        Assertions.assertEquals(0L, result.getValue());
+    }
+
+    @Test
     void testNightsWithoutSleepingNull() {
         List<SleepingSession> sessions = List.of(
                 SleepingSession.transformString("01.10.25 22:15;02.10.25 08:00;GOOD"),
