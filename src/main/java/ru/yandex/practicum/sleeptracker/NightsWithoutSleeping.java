@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class NightsWithoutSleeping implements Function<List<SleepingSession>, SleepAnalysisResult> {
     private static final LocalTime NIGHT_SLEEP_START = LocalTime.of(19,59);
     private static final LocalTime NIGHT_SLEEP_END = LocalTime.of(6,0);
+    
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
